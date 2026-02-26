@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/Employee_Details" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Employee_Details" targetNamespace="http://tempuri.org/Employee_Details">
+  <wsdl:types>
+    <xsd:schema xmlns:mrm="http://tempuri.org/Employee_Details" targetNamespace="http://tempuri.org/Employee_Details">
+      <xsd:include schemaLocation="Employee.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEmployeeDetails_in">
+    <wsdl:part element="tns:Employee_Request" name="Employee_Request"/>
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeDetails_out">
+    <wsdl:part element="tns:Employee_Response" name="Employee_Response"/>
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeDetails_fault1">
+    <wsdl:part element="tns:Fault_Message" name="Fault_Message"/>
+  </wsdl:message>
+  <wsdl:portType name="Employee_DetailsPortType">
+    <wsdl:operation name="GetEmployeeDetails">
+      <wsdl:input message="tns:GetEmployeeDetails_in" name="GetEmployeeDetails_Input"/>
+      <wsdl:output message="tns:GetEmployeeDetails_out" name="GetEmployeeDetails_Output"/>
+      <wsdl:fault message="tns:GetEmployeeDetails_fault1" name="GetEmployeeDetails_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Employee_DetailsSOAP_HTTP_Binding" type="tns:Employee_DetailsPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetEmployeeDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetEmployeeDetails_Input">
+        <soap:body parts="Employee_Request" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetEmployeeDetails_Output">
+        <soap:body parts="Employee_Response" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="GetEmployeeDetails_Fault">
+        <soap:fault name="GetEmployeeDetails_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Employee_Details">
+    <wsdl:port binding="tns:Employee_DetailsSOAP_HTTP_Binding" name="Employee_DetailsSOAP_HTTP_Port">
+      <soap:address location="http://localhost:7800/Employee_Details"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

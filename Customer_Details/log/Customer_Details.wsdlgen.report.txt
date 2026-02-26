@@ -1,0 +1,61 @@
+Summary of selections: WSDL files generation
+
+The selected message set:
+/Customer_Details/Customer_Details
+
+The generated WSDL files will go into:
+/Customer_Details
+
+The version of WSDL to be generated: 1.1
+The version of SOAP to be generated: 1.1
+
+The selected style for WSDL generation: document
+The WSDL Namespace: http://tempuri.org/Customer_Details
+
+The following operations will be created:
+CustomerDetails (Request-Response)
+
+The following bindings are selected:
+SOAP over http.
+
+The following WSDL files will be generated:
+/Customer_Details/Customer_DetailsService.wsdl
+
+
+Generating XML Schema files from Message Definition files
+Generating schema for no XML Wire format
+Generating schema using the strict option
+All complex types and groups with a Content validation of "Open" or "Open defined" will be generated as if they had Content validation "Closed"
+All complex types and groups with a Composition of "Ordered set" or "Unordered set" will be generated with a Composition of "Sequence"
+All complex types and groups with a Composition of "Message" will be generated with a Composition of "Choice"
+
+
+Processing File : "/Customer_Details/Customer_Details/Customer_Details.mxsd"
+
+Saving File : "/Customer_Details/Customer_Details.xsd" 
+
+Generating XML Schema file \Customer_Details\Customer_Details\Customer_Details.mxsd from Message Definition file \Customer_Details\Customer_Details.xsd
+Creating new WSDL Service file '\Customer_Details\Customer_DetailsService.wsdl'
+Setting wsdl definition name for 'Customer_DetailsService.wsdl': Customer_Details
+Setting wsdl definition targetNamespace for 'Customer_DetailsService.wsdl': http://tempuri.org/Customer_Details
+Adding namespace: xmlns for 'Customer_DetailsService.wsdl':soap=http://schemas.xmlsoap.org/wsdl/soap/
+Adding namespace: xmlns for 'Customer_DetailsService.wsdl':xsd=http://www.w3.org/2001/XMLSchema
+Adding namespace: xmlns for 'Customer_DetailsService.wsdl':wsdl=http://schemas.xmlsoap.org/wsdl/
+Creating new WSDL Interface file '\Customer_Details\Customer_DetailsService.wsdl'
+Creating portType for WSDL Interface: Customer_DetailsPortType
+Creating portType operation 'CustomerDetails'
+Creating message 'CustomerDetails_in'
+Creating message 'CustomerDetails_out'
+Creating message 'CustomerDetails_fault1'
+Creating SOAP over HTTP binding 'Customer_DetailsSOAP_HTTP_Binding'
+Creating binding operation 'CustomerDetails' for binding 'Customer_DetailsSOAP_HTTP_Binding'
+Creating SOAP over HTTP service 'Customer_Details'
+Creating port 'Customer_DetailsSOAP_HTTP_Port' for service 'Customer_Details'
+
+Elapsed time processing this WSDL definition: 0.082 seconds
+Number of warnings for this WSDL definition: 0
+
+
+Number of files processed: 2
+
+

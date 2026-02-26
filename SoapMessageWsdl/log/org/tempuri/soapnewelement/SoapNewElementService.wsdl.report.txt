@@ -1,0 +1,23 @@
+
+
+Importing file: C:\Users\sasikumara\IBM\ACET12\workspace\SoapNewElement\SoapNewElementService.wsdl
+
+The WSDL import will proceed with bindings SoapNewElementSOAP_HTTP_Binding.
+Creating wsdl schema document for file:///C:/Users/sasikumara/IBM/ACET12/workspace/SoapNewElement/SoapNewElementService.wsdl.
+Parsing wsdl binding {http://tempuri.org/SoapNewElement}SoapNewElementSOAP_HTTP_Binding.
+Parsing wsdl binding input EmployeeDetails.
+Parsing wsdl binding output EmployeeDetails.
+Parsing wsdl binding fault EmployeeDetails_Fault.
+Processing doc style for operation EmployeeDetails.
+Populating WSDL schema SoapNewElementService.xsd.
+Creating file SoapNewElementService.xsd in the workspace.
+Creating file /SoapMessageWsdl/Soap_NewElement.xsd in the workspace.
+Copying source WSDL SoapNewElementService.wsdl to SoapNewElementService.wsdl.
+
+Elapsed time processing this message definition file: 0.158 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

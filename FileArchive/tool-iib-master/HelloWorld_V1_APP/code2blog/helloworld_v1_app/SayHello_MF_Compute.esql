@@ -1,0 +1,18 @@
+
+--
+BROKER SCHEMA code2blog.helloworld_v1_app
+
+CREATE COMPUTE MODULE SayHello_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+		SET OutputRoot.XMLNSC.root.hello_user = 'from_iib';
+		
+		SET OutputRoot.XMLNSC.root.previous_value = SHARED_ROW.flow02.previous_value;
+		SET SHARED_ROW.flow02.previous_value = CURRENT_TIME;
+		SET OutputRoot.XMLNSC.root.current_value = SHARED_ROW.flow02.previous_value;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

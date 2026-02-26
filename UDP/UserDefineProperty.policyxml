@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="UserDefined" policyName="UserDefineProperty" policyTemplate="UserDefined">
+    <ID>1234</ID>
+  </policy>
+</policies>

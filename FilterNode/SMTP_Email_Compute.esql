@@ -1,0 +1,29 @@
+CREATE COMPUTE MODULE SMTP_Email_Compute
+CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+    -- Completely clear OutputRoot
+    SET OutputRoot = NULL;
+
+    -- Set MIME domain
+    SET OutputRoot.Properties.MessageDomain = 'MIME';
+    SET OutputRoot.MIME.Version = '1.0';
+
+    -- Email recipients
+    SET OutputLocalEnvironment.Email.To = 'user1@company.com';
+    SET OutputLocalEnvironment.Email.Cc = 'user2@company.com';
+
+    -- Subject
+    SET OutputLocalEnvironment.Email.Subject =
+        'Test Email from IBM App Connect';
+
+    -- Email body
+    SET OutputRoot.MIME.Parts.TextPart.ContentType = 'text/plain';
+    SET OutputRoot.MIME.Parts.TextPart.Data =
+        'Hello Team,' || CHR(10) ||
+        'This is a test email from IBM App Connect.' || CHR(10) ||
+        'Regards,' || CHR(10) ||
+        'ACE Flow';
+
+    RETURN TRUE;
+END;
+END MODULE;

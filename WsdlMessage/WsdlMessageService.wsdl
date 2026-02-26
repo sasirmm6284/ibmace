@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/WsdlMessage" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WsdlMessage" targetNamespace="http://tempuri.org/WsdlMessage">
+  <wsdl:types>
+    <xsd:schema xmlns:mrm="http://tempuri.org/WsdlMessage" targetNamespace="http://tempuri.org/WsdlMessage">
+      <xsd:include schemaLocation="WsdlCreation.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="employeeDetails_in">
+    <wsdl:part element="tns:RequestMessage" name="RequestMessage"/>
+  </wsdl:message>
+  <wsdl:message name="employeeDetails_out">
+    <wsdl:part element="tns:ResponseMessage" name="ResponseMessage"/>
+  </wsdl:message>
+  <wsdl:message name="employeeDetails_fault1">
+    <wsdl:part element="tns:Fault1" name="Fault1"/>
+  </wsdl:message>
+  <wsdl:portType name="WsdlMessagePortType">
+    <wsdl:operation name="employeeDetails">
+      <wsdl:input message="tns:employeeDetails_in" name="employeeDetails_Input"/>
+      <wsdl:output message="tns:employeeDetails_out" name="employeeDetails_Output"/>
+      <wsdl:fault message="tns:employeeDetails_fault1" name="employeeDetails_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsdlMessageSOAP_HTTP_Binding" type="tns:WsdlMessagePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="employeeDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="employeeDetails_Input">
+        <soap:body parts="RequestMessage" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="employeeDetails_Output">
+        <soap:body parts="ResponseMessage" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="employeeDetails_Fault">
+        <soap:fault name="employeeDetails_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsdlMessageSOAP_Service">
+    <wsdl:port binding="tns:WsdlMessageSOAP_HTTP_Binding" name="WsdlMessageSOAP__Port">
+      <soap:address location="http://localhost:7800/WsdlMessage"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

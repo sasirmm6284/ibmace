@@ -1,0 +1,1 @@
+{ "openapi": "3.0.0", "info": { "title": "HDFC_Bank", "version": "1.0.0", "description": "HDFC_Bank" }, "servers": [ { "url": "/hdfc_bank/v1" } ] }

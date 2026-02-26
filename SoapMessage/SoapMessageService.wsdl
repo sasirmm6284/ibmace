@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns="http://tempuri.org/SoapMessage" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/SoapMessage" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SoapMessage" targetNamespace="http://tempuri.org/SoapMessage">
+  <wsdl:types>
+    <xsd:schema xmlns:mrm="http://tempuri.org/SoapMessage" targetNamespace="http://tempuri.org/SoapMessage">
+      <xsd:complexType name="RequestMessage">
+        <xsd:sequence>
+          <xsd:element ref="EmpId"/>
+          <xsd:element ref="EmpName"/>
+          <xsd:element ref="EmpPhone"/>
+          <xsd:element ref="EmpEmail"/>
+          <xsd:element ref="EmpAddress"/>
+          <xsd:element ref="Company"/>
+          <xsd:element ref="State"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseMessage">
+        <xsd:sequence>
+          <xsd:element ref="StatusofEmployee"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Fault">
+        <xsd:sequence>
+          <xsd:element ref="FaultString"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="EmpName" type="xsd:string"/>
+      <xsd:element name="EmpPhone" type="xsd:int"/>
+      <xsd:element name="EmpAddress" type="xsd:string"/>
+      <xsd:element name="EmpEmail" type="xsd:string"/>
+      <xsd:element name="EmpId" type="xsd:string"/>
+      <xsd:element name="Company" type="xsd:string"/>
+      <xsd:element name="State" type="xsd:string"/>
+      <xsd:element name="StatusofEmployee" type="xsd:string"/>
+      <xsd:element name="FaultString" type="xsd:string"/>
+      <xsd:element name="RequestMessage" type="RequestMessage"/>
+      <xsd:element name="ResponseMessage" type="ResponseMessage"/>
+      <xsd:element name="Fault" type="Fault"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="employeeDetails_in">
+    <wsdl:part element="RequestMessage" name="RequestMessage"/>
+  </wsdl:message>
+  <wsdl:message name="employeeDetails_out">
+    <wsdl:part element="ResponseMessage" name="ResponseMessage"/>
+  </wsdl:message>
+  <wsdl:message name="employeeDetails_fault1">
+    <wsdl:part element="Fault" name="Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="SoapMessagePortType">
+    <wsdl:operation name="employeeDetails">
+      <wsdl:input message="employeeDetails_in" name="employeeDetails_Input"/>
+      <wsdl:output message="employeeDetails_out" name="employeeDetails_Output"/>
+      <wsdl:fault message="employeeDetails_fault1" name="employeeDetails_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapMessageSOAP_HTTP_Binding" type="SoapMessagePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="employeeDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="employeeDetails_Input">
+        <soap:body parts="RequestMessage" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="employeeDetails_Output">
+        <soap:body parts="ResponseMessage" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="employeeDetails_Fault">
+        <soap:fault name="employeeDetails_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapMessage_service">
+    <wsdl:port binding="SoapMessageSOAP_HTTP_Binding" name="SoapMessage_port">
+      <soap:address location="http://localhost:7800/employeeDetails"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

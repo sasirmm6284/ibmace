@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE RetrieveOriginalMessage_HandleWarning
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- The MQGet Node received an MQ Warning!
+		-- The tree will contain just an MQMD and any message content received 
+		-- in as BLOB, no parsing will be performed (for example this could occur
+		-- if the get options had been set to accept truncated messages).
+		-- Throw a user exception
+		DECLARE reasonStr CHAR;
+		SET reasonStr = 'MQGet returned warning';
+		THROW USER EXCEPTION VALUES(reasonStr);
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

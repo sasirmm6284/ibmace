@@ -1,0 +1,84 @@
+
+
+CREATE COMPUTE MODULE DFDL_Compute1
+	    
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+    CALL CopyMessageHeaders() ;
+-- Parse the CSV content from the XML input
+
+CREATE FIELD Environment.Variables.DFDL.HospitalData;
+	    DECLARE outRef REFERENCE TO Environment.Variables.DFDL.HospitalData;
+
+	    ------------------------------------------------------------------
+	    -- Map XML to DFDL (one record per patient)
+	    ------------------------------------------------------------------
+	    FOR p AS InputRoot.XMLNSC.HospitalData.Patient[] DO
+
+	        CREATE LASTCHILD OF outRef NAME 'record';
+	        DECLARE recRef REFERENCE TO outRef.record[LAST];
+
+	        SET recRef.PatientID   = p.PatientID;
+	        SET recRef.FirstName   = p.FirstName;
+	        SET recRef.LastName    = p.LastName;
+	        SET recRef.Age         = p.Age;
+	        SET recRef.Gender      = p.Gender;
+	        SET recRef.Phone       = p.Phone;
+	        SET recRef.Address     = p.Address;
+
+	        -- Visit fields (flattened)
+	        SET recRef.VisitID     = p.Visit.VisitID;
+	        SET recRef.VisitDate   = p.Visit.VisitDate;
+	        SET recRef.DoctorName  = p.Visit.DoctorName;
+	        SET recRef.Department = p.Visit.Department;
+	        SET recRef.Diagnosis  = p.Visit.Diagnosis;
+	        SET recRef.Medication = p.Visit.Medication;
+	        SET recRef.Dose        = p.Visit.Dose;
+	        SET recRef.BillAmount = p.Visit.BillAmount;
+
+	    END FOR;
+
+	    ------------------------------------------------------------------
+	    -- Serialize DFDL logical tree from Environment to flat file
+	    ------------------------------------------------------------------
+	   DECLARE msgBlob BLOB ASBITSTREAM(
+    Environment.Variables.DFDL,
+    546,   -- Encoding (ISO-8859-1)
+    1208,  -- CCSID (UTF-8)
+    COALESCE(
+      '{http://example.com/hospital/dfdl}HospitalData',
+      ''
+    ),
+    ''
+);
+	   
+
+	    ------------------------------------------------------------------
+	    -- Set output message
+	    ------------------------------------------------------------------
+	    SET OutputRoot.BLOB.BLOB = msgBlob;
+
+	    ------------------------------------------------------------------
+	    -- Cleanup Environment
+	    ------------------------------------------------------------------
+	    DELETE FIELD Environment.Variables.DFDL;
+
+
+    RETURN TRUE;
+
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

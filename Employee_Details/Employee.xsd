@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+  <xsd:complexType name="Employee_Request">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="EmployeeId"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:complexType name="Employee_Response">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="EmployeeAddress"/>
+            
+      <xsd:element ref="EmployeeAge"/>
+            
+      <xsd:element ref="EmployeeDOB"/>
+            
+      <xsd:element ref="EmployeeName"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:complexType name="Fault_Message">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="FaultCode"/>
+            
+      <xsd:element ref="FaultString"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:element name="EmployeeId" type="xsd:int"/>
+    
+  <xsd:element name="EmployeeAge" type="xsd:int"/>
+    
+  <xsd:element name="EmployeeName" type="xsd:string"/>
+    
+  <xsd:element name="EmployeeAddress" type="xsd:string"/>
+    
+  <xsd:element name="EmployeeDOB" type="xsd:date"/>
+    
+  <xsd:element name="FaultString" type="xsd:string"/>
+    
+  <xsd:element name="FaultCode" type="xsd:int"/>
+    
+  <xsd:element name="Employee_Request" type="Employee_Request">
+  </xsd:element>
+    
+  <xsd:element name="Employee_Response" type="Employee_Response">
+  </xsd:element>
+    
+  <xsd:element name="Fault_Message" type="Fault_Message">
+  </xsd:element>
+  
+</xsd:schema>

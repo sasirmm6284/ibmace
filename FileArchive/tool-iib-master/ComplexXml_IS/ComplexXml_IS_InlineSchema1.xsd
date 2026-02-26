@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://ComplexXml_IS" 
+ xmlns:art="http://schemas.datacontract.org/2004/07/Artefacts.BoardPlus.ServiceModel"
+xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays" 
+xmlns:tem="http://tempuri02.org/" 
+xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://ComplexXml_IS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <xsd:import schemaLocation="schema1.xsd" namespace="http://schemas.datacontract.org/2004/07/Artefacts.BoardPlus.ServiceModel" />
+
+	<xsd:element ibmSchExtn:docRoot="true" name="operation1">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="input1" nillable="true" type="xsd:string"/>
+				<xsd:element name="items">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="item">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="name" type="xsd:string"/>
+										<xsd:element name="ppu" type="xsd:string"/>
+										<xsd:element name="batters">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element maxOccurs="unbounded" name="batter">
+														<xsd:complexType>
+															<xsd:simpleContent>
+																<xsd:extension base="xsd:string">
+																	<xsd:attribute name="id" type="xsd:string" use="required"/>
+																</xsd:extension>
+															</xsd:simpleContent>
+														</xsd:complexType>
+													</xsd:element>
+													<xsd:element name="table">
+														<xsd:complexType>
+															<xsd:sequence>
+																<xsd:element maxOccurs="unbounded" name="tr">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element maxOccurs="unbounded" minOccurs="0" name="td" type="xsd:string"/>
+																			<xsd:element maxOccurs="unbounded" minOccurs="0" name="th" type="xsd:string"/>
+																		</xsd:sequence>
+																		<xsd:attribute name="repeat" type="xsd:string" use="optional"/>
+																	</xsd:complexType>
+																</xsd:element>
+																<xsd:element name="bookstore">
+																	<xsd:complexType>
+																		<xsd:sequence>
+																			<xsd:element maxOccurs="unbounded" name="book">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="title">
+																							<xsd:complexType>
+																								<xsd:simpleContent>
+																									<xsd:extension base="xsd:string">
+																										<xsd:attribute name="lang" type="xsd:string" use="required"/>
+																									</xsd:extension>
+																								</xsd:simpleContent>
+																							</xsd:complexType>
+																						</xsd:element>
+																						<xsd:element name="author" type="xsd:string"/>
+																						<xsd:element name="year" type="xsd:string"/>
+																						<xsd:element name="price" type="xsd:string"/>
+																					</xsd:sequence>
+																					<xsd:attribute name="category" type="xsd:string" use="required"/>
+																				</xsd:complexType>
+																			</xsd:element>
+																			<xsd:element name="root">
+																				<xsd:complexType>
+																					<xsd:sequence>
+																						<xsd:element name="child">
+																							<xsd:complexType>
+																								<xsd:sequence>
+																									<xsd:element name="subchild">
+																										<xsd:complexType>
+																											<xsd:sequence>
+																												<xsd:element name="title">
+																													<xsd:complexType>
+																														<xsd:simpleContent>
+																															<xsd:extension base="xsd:string">
+																																<xsd:attribute name="lang" type="xsd:string" use="required"/>
+																															</xsd:extension>
+																														</xsd:simpleContent>
+																													</xsd:complexType>
+																												</xsd:element>
+																												<xsd:element name="author" type="xsd:string"/>
+																												<xsd:element name="year" type="xsd:string"/>
+																												<xsd:element name="price" type="xsd:string"/>
+																											</xsd:sequence>
+																										</xsd:complexType>
+																									</xsd:element>
+																								</xsd:sequence>
+																							</xsd:complexType>
+																						</xsd:element>
+																					</xsd:sequence>
+																				</xsd:complexType>
+																			</xsd:element>
+																		</xsd:sequence>
+																	</xsd:complexType>
+																</xsd:element>
+															</xsd:sequence>
+															<xsd:attribute name="class" type="xsd:string" use="required"/>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+										<xsd:element maxOccurs="unbounded" name="topping">
+											<xsd:complexType>
+												<xsd:simpleContent>
+													<xsd:extension base="xsd:string">
+														<xsd:attribute name="id" type="xsd:string" use="required"/>
+													</xsd:extension>
+												</xsd:simpleContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:attribute name="id" type="xsd:string" use="required"/>
+									<xsd:attribute name="type" type="xsd:string" use="required"/>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element ibmSchExtn:docRoot="true" name="operation1Response">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="output1" nillable="true" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+    <xsd:element ibmSchExtn:docRoot="true" name="operation2InputParameter1" nillable="true">
+    <xsd:complexType>
+			<xsd:sequence> <xsd:element name="Validate">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="MerchantRequest">
+          <xsd:complexType>
+            <xsd:sequence>
+ <xsd:element name="BoardingFileFormat" type="xsd:string" />
+  <xsd:element name="ClientId" type="xsd:unsignedByte" />
+  <xsd:element name="MaintainTerminalCommand" type="xsd:unsignedByte" />
+  <xsd:element name="Merchant">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="FeeDiscountRate" />
+        <xsd:element name="MerchantBusiness" />
+        <xsd:element name="MerchantOwners" />
+        <xsd:element name="MerchantProfile">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="DBAName" type="xsd:unsignedByte" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="ProcessingHistory" />
+        <xsd:element name="Status" type="xsd:unsignedByte" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ProcessorId" type="xsd:unsignedByte" />
+  <xsd:element name="TimeZone" type="xsd:unsignedByte" />
+  
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="userToken" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+            </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="operation2OutputParameter1" nillable="true">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string"/>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

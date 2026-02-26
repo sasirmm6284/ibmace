@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE Day01_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		IF(InputRoot.JSON.Data.Customer.paymentType='netbanking')THEN
+		SET OutputLocalEnvironment.Destination.RouterList.DestinationData.labelName='netbank';
+	ELSEIF(InputRoot.JSON.Data.Customer.paymentType='card')THEN
+		SET OutputLocalEnvironment.Destination.RouterList.DestinationData.labelName='card';
+	ELSE
+		SET OutputLocalEnvironment.Destination.RouterList.DestinationData.labelName='unknown';
+	END IF;
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

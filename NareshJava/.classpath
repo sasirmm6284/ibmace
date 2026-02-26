@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="JCN_HOME/javacompute.jar"/>
+	<classpathentry kind="var" path="JCN_HOME/jplugin2.jar"/>
+	<classpathentry kind="var" path="COMMON_CLASSES_HOME/IntegrationAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/commons-compress-1.27.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/commons-io-2.18.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/log4j-api-2.23.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/log4j-core-2.23.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/poi-5.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/poi-ooxml-5.2.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/poi-ooxml-5.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sasikumara/IBM/ACET12/workspace/TEST_SERVER/shared-classes/poi-ooxml-full-5.5.0.jar"/>
+	<classpathentry kind="con" path="com.ibm.etools.mft.uri.classpath.MBProjectReference"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

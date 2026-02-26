@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        
+  
+  <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+        
+  
+  <xsd:annotation>
+        		
+    
+    <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            			
+      
+      <dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+            		
+    
+    </xsd:appinfo>
+        	
+  
+  </xsd:annotation>
+    	
+  
+  <xsd:element ibmSchExtn:docRoot="true" name="Student_Details">
+        		
+    
+    <xsd:complexType>
+            			
+      
+      <xsd:sequence dfdl:separator="">
+                				
+        
+        <xsd:element dfdl:terminator="%CR;%LF;%WSP*;" name="Student_Header">
+                    					
+          
+          <xsd:complexType>
+                        						
+            
+            <xsd:sequence>
+                            							
+              
+              <xsd:element ibmDfdlExtn:sampleValue="Name" name="Name" type="xsd:string"/>
+                            							
+              
+              <xsd:element dfdl:textNumberPattern="0" ibmDfdlExtn:sampleValue="Class" name="Class" type="xsd:string"/>
+                            							
+							
+              
+              <xsd:element dfdl:textNumberPattern="0" ibmDfdlExtn:sampleValue="Roll" name="Roll" type="xsd:string"/>
+                            							
+                            
+              
+              <xsd:element ibmDfdlExtn:sampleValue="Location" name="Location" type="xsd:string"/>
+                                                    
+            
+            </xsd:sequence>
+                        					
+          
+          </xsd:complexType>
+                    				
+        
+        </xsd:element>
+                			
+				
+        
+        <xsd:element dfdl:occursCountKind="implicit" dfdl:terminator="%CR;%LF;%WSP*;" maxOccurs="unbounded" name="Student">
+                    					
+          
+          <xsd:complexType>
+                        						
+            
+            <xsd:sequence>
+                             
+							
+              
+              <xsd:element ibmDfdlExtn:sampleValue="Sasi" name="Name" type="xsd:string"/>
+                            							
+              
+              <xsd:element ibmDfdlExtn:sampleValue="10" name="Class" type="xsd:string"/>
+                            							
+              
+              <xsd:element ibmDfdlExtn:sampleValue="25" name="Roll" type="xsd:string"/>
+                                                        
+              
+              <xsd:element ibmDfdlExtn:sampleValue="India" name="Location" type="xsd:string"/>
+                                                    
+            
+            </xsd:sequence>
+                        					
+          
+          </xsd:complexType>
+                    				
+        
+        </xsd:element>
+                				
+			
+      
+      </xsd:sequence>
+            		
+    
+    </xsd:complexType>
+        	
+  
+  </xsd:element>
+    
+
+</xsd:schema>

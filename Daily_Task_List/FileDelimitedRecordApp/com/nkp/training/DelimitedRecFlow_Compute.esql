@@ -1,0 +1,33 @@
+BROKER SCHEMA FileDelimitedRecordApp.com.nkp.training
+
+
+CREATE COMPUTE MODULE DelimitedRecFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		  DECLARE formattedTimestamp CHARACTER;
+        SET formattedTimestamp = REPLACE(CAST(CURRENT_TIMESTAMP AS CHARACTER), ':', '-');  -- Replace colons with dashes
+        
+        -- Set the file name for the output (using InputLocalEnvironment.File.Name if it exists)
+        SET OutputLocalEnvironment.Destination.File.Name = 'File_' || formattedTimestamp || '_' || CAST(InputLocalEnvironment.File.Record AS CHARACTER) || '.xml';
+		
+		
+		--SET OutputLocalEnvironment.Destination.File.Name='File_'||CURRENT_TIMESTAMP||CAST(InputLocalEnvironment.File.Name AS CHARACTER)||'.xml';
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

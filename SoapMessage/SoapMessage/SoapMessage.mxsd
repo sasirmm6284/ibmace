@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="RequestMessage">
+    <xsd:sequence>
+      <xsd:element ref="EmpId"/>
+      <xsd:element ref="EmpName"/>
+      <xsd:element ref="EmpPhone"/>
+      <xsd:element ref="EmpEmail"/>
+      <xsd:element ref="EmpAddress"/>
+      <xsd:element ref="Company"/>
+      <xsd:element ref="State"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ResponseMessage">
+    <xsd:sequence>
+      <xsd:element ref="StatusofEmployee"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Fault">
+    <xsd:sequence>
+      <xsd:element ref="FaultString"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EmpName" type="xsd:string"/>
+  <xsd:element name="EmpPhone" type="xsd:int"/>
+  <xsd:element name="EmpAddress" type="xsd:string"/>
+  <xsd:element name="EmpEmail" type="xsd:string"/>
+  <xsd:element name="EmpId" type="xsd:string"/>
+  <xsd:element name="Company" type="xsd:string"/>
+  <xsd:element name="State" type="xsd:string"/>
+  <xsd:element name="StatusofEmployee" type="xsd:string"/>
+  <xsd:element name="FaultString" type="xsd:string"/>
+  <xsd:element name="RequestMessage" type="RequestMessage">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/RequestMessage;XSDElementDeclaration=9$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ResponseMessage" type="ResponseMessage">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/ResponseMessage;XSDElementDeclaration=10$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="Fault" type="Fault">
+    <xsd:annotation>
+      <xsd:appinfo source="WMQI_APPINFO">
+        <MRMessage messageDefinition="/0/Fault;XSDElementDeclaration=11$MRObject"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

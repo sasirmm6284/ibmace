@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="AccountCreation">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="FirstName"/>
+        <xsd:element ref="LastName"/>
+        <xsd:element ref="AccountNumber"/>
+        <xsd:element ref="AccountType"/>
+        <xsd:element ref="AdharCard"/>
+        <xsd:element ref="InitialAmount"/>
+        <xsd:element ref="Branch"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="FirstName" type="xsd:string"/>
+  <xsd:element name="InitialAmount" type="xsd:decimal"/>
+  <xsd:element name="Branch" type="xsd:string"/>
+  <xsd:element name="LastName" type="xsd:string"/>
+  <xsd:element name="AdharCard" type="xsd:string"/>
+  <xsd:element name="AccountType" type="xsd:string"/>
+  <xsd:element name="AccountNumber" type="xsd:string"/>
+</xsd:schema>

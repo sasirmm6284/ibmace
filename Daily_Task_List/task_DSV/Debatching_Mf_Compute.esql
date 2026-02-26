@@ -1,0 +1,61 @@
+CREATE COMPUTE MODULE Debatching_Mf_Compute
+	 DECLARE ns NAMESPACE 'http://example.com/cdm/transport';
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+    	 
+
+        -- Copy headers once per batch
+        CALL CopyMessageHeaders();
+    
+       
+        -- Reference to first Shipment using namespace prefix
+        DECLARE shipmentRef REFERENCE TO InputRoot.XMLNSC.ns:TransportBatch.ns:Shipment[1];
+
+        -- Loop through each Shipment element
+        WHILE LASTMOVE(shipmentRef) DO
+
+            -- Determine queue name based on transportMode attribute
+            IF FIELDVALUE(shipmentRef.(XMLNSC.Attribute)transportMode) = 'Road' THEN
+                SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'ROAD.Q';
+                 SET OutputRoot.JSON.Data.Destination = shipmentRef;
+                 PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+                 SET OutputRoot.JSON.Data = NULL;
+            ELSEIF FIELDVALUE(shipmentRef.(XMLNSC.Attribute)transportMode) = 'Air' THEN
+                SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'AIR.Q';
+             
+                 SET OutputRoot.JSON.Data.Destination = shipmentRef;
+                 PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+                 SET OutputRoot.JSON.Data = NULL;
+                 
+                 
+            ELSE
+                SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'OTHER.Q';
+            END IF;
+
+            
+            
+
+            
+
+            -- Move to next Shipment sibling with namespace
+            MOVE shipmentRef NEXTSIBLING;
+        END WHILE;
+    	
+        RETURN FALSE;
+    END;
+
+    CREATE PROCEDURE CopyMessageHeaders()
+    BEGIN 
+        DECLARE i INTEGER 1;
+        DECLARE j INTEGER CARDINALITY(InputRoot.*[]);
+        WHILE i <= j DO
+            SET OutputRoot.*[i] = InputRoot.*[i];
+            SET i = i + 1;
+        END WHILE;
+    END;
+
+    CREATE PROCEDURE CopyEntireMessage()
+    BEGIN
+        SET OutputRoot = InputRoot;
+    END;
+END MODULE;

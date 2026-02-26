@@ -1,0 +1,24 @@
+
+--
+BROKER SCHEMA com.wordpress.code2blog.globalcachedemo_v1_app
+
+CREATE COMPUTE MODULE loadCache_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		SET Environment.DB.EMPLOYEE[] = SELECT 
+			p.EMPNO, p.FIRSTNAME, p.LASTNAME, CURRENT_TIMESTAMP AS CACHE_UPDATED_AT
+			FROM Database.WMBOWNER.EMPLOYEE AS p;
+		
+		DECLARE iRecords INTEGER 0;
+		FOR dbRow AS Environment.DB.EMPLOYEE[] DO
+			CALL PutJAXB2CACHE(dbRow);
+			SET iRecords = iRecords + 1;
+		END FOR;
+		
+		CREATE LASTCHILD OF OutputRoot DOMAIN 'XMLNSC';
+		SET OutputRoot.XMLNSC.employee.records_loaded = iRecords;
+		RETURN TRUE;
+	END;
+END MODULE;

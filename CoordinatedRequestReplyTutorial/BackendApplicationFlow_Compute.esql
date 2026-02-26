@@ -1,0 +1,37 @@
+
+DECLARE VoteCount SHARED ROW;
+DECLARE Initialised SHARED BOOLEAN FALSE;
+
+CREATE COMPUTE MODULE BackendApplicationFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Start by recording the voting intention
+		IF Initialised=FALSE THEN
+			BEGIN ATOMIC
+				SET VoteCount.A = 0;
+				SET VoteCount.B = 0;
+				SET Initialised = TRUE;
+			END;
+		END IF;
+		IF InputRoot.XMLNSC.Message.VotingIntention = 'A' THEN
+			SET VoteCount.A = VoteCount.A + 1;
+		END IF;
+		IF InputRoot.XMLNSC.Message.VotingIntention = 'B' THEN
+			SET VoteCount.B = VoteCount.B + 1;
+		END IF;			
+		
+		-- Now construct a reply message		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		SET OutputRoot.MQMD.CorrelId = InputRoot.MQMD.MsgId;
+		CREATE LASTCHILD OF OutputRoot DOMAIN('XMLNSC');
+		DECLARE currentTimeString CHAR;
+		SET currentTimeString = CURRENT_TIME;
+		-- Convert "TIME 'hh.mm.ss.fff'" to hh.mm.ss
+		SET currentTimeString = SUBSTRING(currentTimeString FROM 7 FOR 8);
+		-- Add a field to the end of Message called ProcessingTime
+		SET OutputRoot.XMLNSC.Message.ProcessingTime = currentTimeString;		  		
+
+		RETURN TRUE;
+	END;
+END MODULE;

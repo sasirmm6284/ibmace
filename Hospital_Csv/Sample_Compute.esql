@@ -1,0 +1,41 @@
+
+
+CREATE COMPUTE MODULE Sample_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		
+		DECLARE name CHARACTER InputRoot.JSON.Data.name;
+    DECLARE age INTEGER InputRoot.JSON.Data.age;
+
+   SET OutputRoot.JSON.Data.message ='Hello ' ||
+    CAST(InputRoot.JSON.Data.name AS CHARACTER) ||
+    ' you are ' ||
+    CAST(InputRoot.JSON.Data.age AS CHARACTER) ||
+    ' years old';
+   
+
+    SET OutputRoot.JSON.Data.status = 'SUCCESS';
+		
+		
+		
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

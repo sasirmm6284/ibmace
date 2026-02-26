@@ -1,0 +1,30 @@
+CREATE COMPUTE MODULE POC_Message_Compute
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Initialize JSON tree
+        CREATE LASTCHILD OF OutputRoot DOMAIN('JSON') NAME 'json';
+        CREATE LASTCHILD OF OutputRoot.json NAME 'data';
+
+        -- Execute SQL and get rowset
+        -- Make a SQL tree under OutputRoot to hold results
+CREATE LASTCHILD OF OutputRoot DOMAIN('SQL') NAME 'SQLData';
+
+-- Execute SQL and populate OutputRoot.SQLData
+SET OutputRoot.SQLData = PASSTHRU('SELECT * FROM world.employee_details');
+
+        -- Loop over rows
+        /*DECLARE i INTEGER 1;
+        WHILE i <= CARDINALITY(rs.*[]) DO
+            CREATE LASTCHILD OF OutputRoot.json.data NAME 'DBDetail';
+            
+            -- Map each column manually
+            SET OutputRoot.json.data.DBDetail[i].emp_id = rs.*[i].emp_id;
+            SET OutputRoot.json.data.DBDetail[i].emp_name = rs.*[i].emp_name;
+            SET OutputRoot.json.data.DBDetail[i].salary = rs.*[i].salary;
+
+            SET i = i + 1;
+        END WHILE;*/
+
+        RETURN TRUE;
+    END;
+END MODULE;

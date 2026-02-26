@@ -1,0 +1,53 @@
+
+
+CREATE COMPUTE MODULE Task_Services_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+	/*	
+	DECLARE inRef REFERENCE TO InputRoot.XMLNSC.EmpDetails;
+    DECLARE EmpCount INTEGER CARDINALITY(inRef.Emp[]);  --CARDINALITY is use to count the no of Emp tag
+    DECLARE i INTEGER 1;
+    CREATE FIELD OutputRoot.XMLNSC.EmpDetails_Out;
+    DECLARE outRef REFERENCE TO OutputRoot.XMLNSC.EmpDetails_Out;
+    
+     X : LOOP
+     	
+     IF(i<=EmpCount) THEN 
+     SET outRef.Emp_Out[i].EmpID_Out = inRef.Emp[i].EmpID;
+     SET outRef.Emp_Out[i].Name_Out = inRef.Emp[i].Name;
+     SET outRef.Emp_Out[i].Department_Out = inRef.Emp[i].Department;
+     SET outRef.Emp_Out[i].Company_Out = inRef.Emp[i].Company;
+      SET i = i + 1 ;
+
+      ITERATE X;   --ITERATE is use to run the loop continously
+      ELSE 
+      LEAVE X;  -- LEAVE is use to terminate/leave the loop.
+      END IF;
+	END LOOP;*/
+	--SET OutputRoot.MQMD.ReplyToQ ='REPLY.TO.Q';
+	--SET OutputRoot.XMLNSC=InputRoot.XMLNSC;
+	/*SET OutputRoot.XMLNSC=InputRoot.XMLNSC;
+SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'OUTPUT.SASI';
+SET OutputLocalEnvironment.Destination.MQ.DestinationData[2].queueName = 'REPLY.TO.Q';*/
+
+SET OutputRoot=InputRoot;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

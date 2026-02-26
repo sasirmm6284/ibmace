@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+  <xsd:complexType name="CustomerRequest">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="CustomerId"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:complexType name="CustomerResponse">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="CustomerName"/>
+            
+      <xsd:element ref="CustomerPhoneNumber"/>
+            
+      <xsd:element ref="CustomerAddress"/>
+            
+      <xsd:element ref="CustomerDOB"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:complexType name="Error">
+        
+    <xsd:sequence>
+            
+      <xsd:element ref="StatusCode"/>
+            
+      <xsd:element ref="StatusMessage"/>
+          
+    </xsd:sequence>
+      
+  </xsd:complexType>
+    
+  <xsd:element name="CustomerId" type="xsd:int"/>
+    
+  <xsd:element name="CustomerName" type="xsd:string"/>
+    
+  <xsd:element name="CustomerAddress" type="xsd:string"/>
+    
+  <xsd:element name="CustomerPhoneNumber" type="xsd:int"/>
+    
+  <xsd:element name="CustomerDOB" type="xsd:dateTime"/>
+    
+  <xsd:element name="StatusCode" type="xsd:int"/>
+    
+  <xsd:element name="StatusMessage" type="xsd:string"/>
+    
+  <xsd:element name="CustomerRequest" type="CustomerRequest">
+  </xsd:element>
+    
+  <xsd:element name="CustomerResponse" type="CustomerResponse">
+  </xsd:element>
+    
+  <xsd:element name="Error" type="Error">
+  </xsd:element>
+  
+</xsd:schema>

@@ -1,0 +1,7 @@
+:
+.metadata/
+bin/
+target/
+*.log
+*.class
+*.bar

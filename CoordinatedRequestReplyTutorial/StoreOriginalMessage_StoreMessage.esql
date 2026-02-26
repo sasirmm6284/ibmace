@@ -1,0 +1,20 @@
+
+
+CREATE COMPUTE MODULE StoreOriginalMessage_StoreMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- The inbound request came in over HTTP.
+		-- The inbound HTTP Identifier in the LocalEnvironment will be used for correlation 		
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.MQMD.MsgId = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET OutputRoot.MQMD.CorrelId = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET OutputRoot.MQMD.ReplyToQ = 'BACKEND.REPLY';
+		-- The Backend MQ application implements typical MQ Request / Reply
+		-- and copies the MQMD MsgId to the MQMD CorrelId
+		-- The original input message body is stored on the MQ queue STORE.QUEUE
+		-- This data is made available for the ReplyFlow but does not need to be passed to the
+		-- BackendApplicationFlow, so if it needs to be redacted then it can be!
+		-- The MQGet node in the Reply flow retrieves the stored message by CorrelId.
+		RETURN TRUE;
+	END;
+END MODULE;

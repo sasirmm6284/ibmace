@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE ReplyFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;		
+		CREATE LASTCHILD OF OutputRoot DOMAIN('JSON');
+		SET OutputRoot.JSON.Data.Reply = 
+			'Thank you ' || Environment.ReadByMQGetNodeOffQueue.JSON.Data.VoterName || ' for voting. Your intention has been successfully registered!'  
+ 			|| ' It was processed at ' || InputRoot.XMLNSC.Message.ProcessingTime;
+ 		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = InputRoot.MQMD.CorrelId;	
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,29 @@
+
+
+CREATE COMPUTE MODULE RequestFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CREATE LASTCHILD OF OutputRoot DOMAIN('XMLNSC');
+		-- In this example, the voting intention is passed to the BackendApplicationFlow
+		-- but the sensitive personal details about the voter (their name and address) 
+		-- are not passed on!
+		-- This flow also takes JSON data inbound and creates XML data outbound  
+		SET OutputRoot.XMLNSC.Message.VotingIntention = InputRoot.JSON.Data.VotingIntention;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

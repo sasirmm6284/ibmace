@@ -1,0 +1,67 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "customerDetails",
+    "version" : "1.0.0",
+    "description" : "customerDetails"
+  },
+  "paths" : {
+    "/customer" : {
+      "get" : {
+        "operationId" : "getCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/customer"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve customer",
+        "parameters" : [ {
+          "name" : "request",
+          "in" : "query",
+          "type" : "string",
+          "required" : false,
+          "format" : "student"
+        } ]
+      },
+      "post" : {
+        "operationId" : "postCustomer",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a customer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "boolean"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/customerdetails/v1",
+  "definitions" : {
+    "customer" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "name", "address" ]
+    }
+  }
+}

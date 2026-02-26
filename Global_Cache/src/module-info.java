@@ -1,0 +1,2 @@
+module Global_Cache {
+}

@@ -1,0 +1,33 @@
+
+
+CREATE COMPUTE MODULE trainApi_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		
+--DECLARE queryValue CHARACTER InputRoot.JSON.Data.trainNumber;
+--SET OutputLocalEnvironment.Destination.HTTP.RequestURL ='https://irctc1.p.rapidapi.com/api/v1/searchTrain?query=' || queryValue;
+--SET OutputLocalEnvironment.Destination.HTTP.Method = 'GET';
+--SET OutputLocalEnvironment.Destination.HTTP.RequestHeader."x-rapidapi-key" ='b635e55506msha54036950727ff2p1d9f18jsn122d35d6db68';
+--SET OutputLocalEnvironment.Destination.HTTP.RequestHeader."x-rapidapi-host" ='irctc1.p.rapidapi.com';		
+		
+		
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

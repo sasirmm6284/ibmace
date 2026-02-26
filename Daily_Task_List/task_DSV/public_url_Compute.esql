@@ -1,0 +1,35 @@
+
+
+CREATE COMPUTE MODULE public_url_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+
+	 -- Set the base URL (endpoint)
+   SET OutputLocalEnvironment.Destination.HTTP.RequestURL = 'https://newsdata.io/api/1/latest';--address of the API
+
+    -- ✅ Set query parameters
+    SET OutputLocalEnvironment.Destination.HTTP.QueryString.q = InputRoot.JSON.Data.query;--ACE to send a query parameter q to the HTTP API.
+    SET OutputLocalEnvironment.Destination.HTTP.QueryString.apikey = InputRoot.JSON.Data.apiKey;--sets the apikey parameter in the HTTP request URL dynamically.
+
+	 
+
+	
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

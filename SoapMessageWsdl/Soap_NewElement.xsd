@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      
+  
+  <xsd:complexType name="Request">
+            
+    
+    <xsd:sequence>
+                  
+      
+      <xsd:element ref="EmpID"/>
+                  
+      
+      <xsd:element ref="EmpName"/>
+                  
+      
+      <xsd:element ref="State"/>
+                  
+      
+      <xsd:element ref="Address"/>
+                  
+      
+      <xsd:element ref="Pincode"/>
+                
+    
+    </xsd:sequence>
+          
+  
+  </xsd:complexType>
+      
+  
+  <xsd:complexType name="Response">
+            
+    
+    <xsd:sequence>
+                  
+      
+      <xsd:element ref="Status"/>
+                
+    
+    </xsd:sequence>
+          
+  
+  </xsd:complexType>
+      
+  
+  <xsd:complexType name="Fault">
+            
+    
+    <xsd:sequence>
+                  
+      
+      <xsd:element ref="Fstring"/>
+                
+    
+    </xsd:sequence>
+          
+  
+  </xsd:complexType>
+      
+  
+  <xsd:element name="EmpID" type="xsd:string"/>
+      
+  
+  <xsd:element name="EmpName" type="xsd:string"/>
+      
+  
+  <xsd:element name="State" type="xsd:string"/>
+      
+  
+  <xsd:element name="Address" type="xsd:string"/>
+      
+  
+  <xsd:element name="Pincode" type="xsd:string"/>
+      
+  
+  <xsd:element name="Status" type="xsd:string"/>
+      
+  
+  <xsd:element name="Fstring" type="xsd:string"/>
+      
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Request" type="Request">
+  </xsd:element>
+      
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Response" type="Response">
+  </xsd:element>
+      
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="Fault" type="Fault">
+  </xsd:element>
+    
+
+</xsd:schema>

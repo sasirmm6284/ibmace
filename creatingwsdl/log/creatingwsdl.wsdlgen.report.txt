@@ -1,0 +1,48 @@
+Summary of selections: WSDL files generation
+
+The selected message set:
+/creatingwsdl/creatingwsdl
+
+The generated WSDL files will go into:
+/creatingwsdl
+
+The version of WSDL to be generated: 1.1
+The version of SOAP to be generated: 1.1
+
+The selected style for WSDL generation: document
+The WSDL Namespace: http://tempuri.org/
+
+The following operations will be created:
+
+The following bindings are selected:
+SOAP over http.
+
+The following WSDL files will be generated:
+/creatingwsdl/creatingwsdlService.wsdl
+
+
+Generating XML Schema files from Message Definition files
+Generating schema for no XML Wire format
+Generating schema using the strict option
+All complex types and groups with a Content validation of "Open" or "Open defined" will be generated as if they had Content validation "Closed"
+All complex types and groups with a Composition of "Ordered set" or "Unordered set" will be generated with a Composition of "Sequence"
+All complex types and groups with a Composition of "Message" will be generated with a Composition of "Choice"
+Creating new WSDL Service file '\creatingwsdl\creatingwsdlService.wsdl'
+Setting wsdl definition name for 'creatingwsdlService.wsdl': creatingwsdl
+Setting wsdl definition targetNamespace for 'creatingwsdlService.wsdl': http://tempuri.org/
+Adding namespace: xmlns for 'creatingwsdlService.wsdl':soap=http://schemas.xmlsoap.org/wsdl/soap/
+Adding namespace: xmlns for 'creatingwsdlService.wsdl':xsd=http://www.w3.org/2001/XMLSchema
+Adding namespace: xmlns for 'creatingwsdlService.wsdl':wsdl=http://schemas.xmlsoap.org/wsdl/
+Creating new WSDL Interface file '\creatingwsdl\creatingwsdlService.wsdl'
+Creating portType for WSDL Interface: creatingwsdlPortType
+Creating SOAP over HTTP binding 'creatingwsdlSOAP_HTTP_Binding'
+Creating SOAP over HTTP service 'creatingwsdlSOAP_HTTP_Service'
+Creating port 'creatingwsdlSOAP_HTTP_Port' for service 'creatingwsdlSOAP_HTTP_Service'
+
+Elapsed time processing this WSDL definition: 1.731931835428E9 seconds
+Number of warnings for this WSDL definition: 0
+
+
+Number of files processed: 1
+
+

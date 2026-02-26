@@ -1,0 +1,61 @@
+Summary of selections: WSDL files generation
+
+The selected message set:
+/Employee_Details/Employee_Details
+
+The generated WSDL files will go into:
+/Employee_Details
+
+The version of WSDL to be generated: 1.1
+The version of SOAP to be generated: 1.1
+
+The selected style for WSDL generation: document
+The WSDL Namespace: http://tempuri.org/Employee_Details
+
+The following operations will be created:
+GetEmployeeDetails (Request-Response)
+
+The following bindings are selected:
+SOAP over http.
+
+The following WSDL files will be generated:
+/Employee_Details/Employee_DetailsService.wsdl
+
+
+Generating XML Schema files from Message Definition files
+Generating schema for no XML Wire format
+Generating schema using the strict option
+All complex types and groups with a Content validation of "Open" or "Open defined" will be generated as if they had Content validation "Closed"
+All complex types and groups with a Composition of "Ordered set" or "Unordered set" will be generated with a Composition of "Sequence"
+All complex types and groups with a Composition of "Message" will be generated with a Composition of "Choice"
+
+
+Processing File : "/Employee_Details/Employee_Details/Employee.mxsd"
+
+Saving File : "/Employee_Details/Employee.xsd" 
+
+Generating XML Schema file \Employee_Details\Employee_Details\Employee.mxsd from Message Definition file \Employee_Details\Employee.xsd
+Creating new WSDL Service file '\Employee_Details\Employee_DetailsService.wsdl'
+Setting wsdl definition name for 'Employee_DetailsService.wsdl': Employee_Details
+Setting wsdl definition targetNamespace for 'Employee_DetailsService.wsdl': http://tempuri.org/Employee_Details
+Adding namespace: xmlns for 'Employee_DetailsService.wsdl':soap=http://schemas.xmlsoap.org/wsdl/soap/
+Adding namespace: xmlns for 'Employee_DetailsService.wsdl':xsd=http://www.w3.org/2001/XMLSchema
+Adding namespace: xmlns for 'Employee_DetailsService.wsdl':wsdl=http://schemas.xmlsoap.org/wsdl/
+Creating new WSDL Interface file '\Employee_Details\Employee_DetailsService.wsdl'
+Creating portType for WSDL Interface: Employee_DetailsPortType
+Creating portType operation 'GetEmployeeDetails'
+Creating message 'GetEmployeeDetails_in'
+Creating message 'GetEmployeeDetails_out'
+Creating message 'GetEmployeeDetails_fault1'
+Creating SOAP over HTTP binding 'Employee_DetailsSOAP_HTTP_Binding'
+Creating binding operation 'GetEmployeeDetails' for binding 'Employee_DetailsSOAP_HTTP_Binding'
+Creating SOAP over HTTP service 'Employee_Details'
+Creating port 'Employee_DetailsSOAP_HTTP_Port' for service 'Employee_Details'
+
+Elapsed time processing this WSDL definition: 0.142 seconds
+Number of warnings for this WSDL definition: 0
+
+
+Number of files processed: 2
+
+

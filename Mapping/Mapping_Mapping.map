@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="default" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0">
+    <input path="mbsharedlib://Xml_Input/Input.xsd"/>
+    <output path="mbsharedlib://OutPut/output.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="Mapping_Mapping">
+        <input path="mb:msg(book,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_book"/>
+        <output path="mb:msg(Documentary,assembly,XMLNSC,Properties)" var="ComIbmMessageAssembly_Documentary"/>
+        <move>
+            <input path="$ComIbmMessageAssembly_book/Properties"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Properties"/>
+            <override>
+                <assign value="{OutPut}">
+                    <output path="$ComIbmMessageAssembly_Documentary/Properties/MessageSet"/>
+                </assign>
+            </override>
+        </move>
+        <local>
+            <input path="$ComIbmMessageAssembly_book/book"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Documentary"/>
+        </local>
+        <task type="todo">
+            <input path="$ComIbmMessageAssembly_book/book/title"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Documentary/Name"/>
+        </task>
+        <task type="todo">
+            <input path="$ComIbmMessageAssembly_book/book/author"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Documentary/publisher"/>
+        </task>
+        <task type="todo">
+            <input path="$ComIbmMessageAssembly_book/book/genre"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Documentary/status"/>
+        </task>
+        <task type="todo">
+            <input path="$ComIbmMessageAssembly_book/book/price"/>
+            <output path="$ComIbmMessageAssembly_Documentary/Documentary/amount"/>
+        </task>
+    </mappingDeclaration>
+</mappingRoot>

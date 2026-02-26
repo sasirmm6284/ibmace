@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <InputMessage timestamp="1622489858186" nodeId="FCMComposite_1_1" name="VoteA" id="1622489858186-293">
+        <plainText>%7B%0D%0A++%22VoterName%22%3A+%22Joe+Bloggs%22%2C%0D%0A++%22VoterAddress%22%3A%22Hursley+Park+Southampton+SO21+2JN%22%2C%0D%0A++%22VotingIntention%22%3A+%22A%22%0D%0A%7D</plainText>
+    </InputMessage>
+    <InputMessage timestamp="1622491070984" nodeId="FCMComposite_1_1" name="VoteB" id="1622491070984-428">
+        <plainText>%7B%0D%0A++%22VoterName%22%3A+%22Fred+Average%22%2C%0D%0A++%22VoterAddress%22%3A%22Hursley+Park+Southampton+SO21+2JN%22%2C%0D%0A++%22VotingIntention%22%3A+%22B%22%0D%0A%7D</plainText>
+    </InputMessage>
+</MessagePool>

@@ -1,0 +1,32 @@
+
+
+CREATE COMPUTE MODULE Attach_Detach_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		--DECLARE EmpCount INTEGER CARDINALITY(inRef.Emp[]); 
+		
+		DECLARE Inref1 REFERENCE TO InputRoot.XMLNSC.EmpDetails;
+		DECLARE RecordCount INTEGER CARDINALITY(Inref1.Emp[]);
+		DECLARE Inref REFERENCE TO InputRoot.XMLNSC.EmpDetails.Department;
+		DETACH Inref;
+		ATTACH Inref TO InputRoot.XMLNSC.EmpDetails.Emp[2] AS LASTCHILD;
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

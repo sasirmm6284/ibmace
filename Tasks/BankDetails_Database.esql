@@ -1,0 +1,14 @@
+
+
+CREATE DATABASE MODULE BankDetails_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		INSERT INTO Database.sys.customers (name, email, phone,initialBalance)
+VALUES (Environment.Variables.name, Environment.Variables.email,Environment.Variables.phone, Environment.Variables.balance);
+		
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

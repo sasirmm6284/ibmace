@@ -1,0 +1,47 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+            targetNamespace="http://hospital/csv"
+            xmlns:tns="http://hospital/csv"
+            elementFormDefault="qualified">
+
+    <!-- CSV format -->
+    <xsd:annotation>
+        <xsd:appinfo source="http://www.ogf.org/dfdl/">
+            <dfdl:format
+                separator="|"
+                textNumberRep="standard"
+                encoding="UTF-8"
+                terminator="%NL;"
+                ignoreCase="no"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <!-- Root -->
+    <xsd:element name="HospitalData">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Patient" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="PatientID" type="xsd:string"/>
+                            <xsd:element name="FirstName" type="xsd:string"/>
+                            <xsd:element name="LastName" type="xsd:string"/>
+                            <xsd:element name="Age" type="xsd:int"/>
+                            <xsd:element name="Gender" type="xsd:string"/>
+                            <xsd:element name="Phone" type="xsd:string"/>
+                            <xsd:element name="Address" type="xsd:string"/>
+                            <xsd:element name="VisitID" type="xsd:string"/>
+                            <xsd:element name="VisitDate" type="xsd:string"/>
+                            <xsd:element name="DoctorName" type="xsd:string"/>
+                            <xsd:element name="Department" type="xsd:string"/>
+                            <xsd:element name="Diagnosis" type="xsd:string"/>
+                            <xsd:element name="Medication" type="xsd:string"/>
+                            <xsd:element name="Dose" type="xsd:string"/>
+                            <xsd:element name="BillAmount" type="xsd:decimal"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

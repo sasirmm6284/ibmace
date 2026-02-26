@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/Customer_Details" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Customer_Details" targetNamespace="http://tempuri.org/Customer_Details">
+  <wsdl:types>
+    <xsd:schema xmlns:mrm="http://tempuri.org/Customer_Details" targetNamespace="http://tempuri.org/Customer_Details">
+      <xsd:include schemaLocation="Customer_Details.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CustomerDetails_in">
+    <wsdl:part element="tns:CustomerRequest" name="CustomerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CustomerDetails_out">
+    <wsdl:part element="tns:CustomerResponse" name="CustomerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CustomerDetails_fault1">
+    <wsdl:part element="tns:Error" name="Error"/>
+  </wsdl:message>
+  <wsdl:portType name="Customer_DetailsPortType">
+    <wsdl:operation name="CustomerDetails">
+      <wsdl:input message="tns:CustomerDetails_in" name="CustomerDetails_Input"/>
+      <wsdl:output message="tns:CustomerDetails_out" name="CustomerDetails_Output"/>
+      <wsdl:fault message="tns:CustomerDetails_fault1" name="CustomerDetails_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Customer_DetailsSOAP_HTTP_Binding" type="tns:Customer_DetailsPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CustomerDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CustomerDetails_Input">
+        <soap:body parts="CustomerRequest" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CustomerDetails_Output">
+        <soap:body parts="CustomerResponse" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CustomerDetails_Fault">
+        <soap:fault name="CustomerDetails_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Customer_Details">
+    <wsdl:port binding="tns:Customer_DetailsSOAP_HTTP_Binding" name="Customer_DetailsSOAP_HTTP_Port">
+      <soap:address location="http://localhost:7800/Customer_Details"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

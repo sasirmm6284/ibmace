@@ -1,0 +1,61 @@
+Summary of selections: WSDL files generation
+
+The selected message set:
+/SoapNewElement/SoapNewElement
+
+The generated WSDL files will go into:
+/SoapNewElement
+
+The version of WSDL to be generated: 1.1
+The version of SOAP to be generated: 1.1
+
+The selected style for WSDL generation: document
+The WSDL Namespace: http://tempuri.org/SoapNewElement
+
+The following operations will be created:
+EmployeeDetails (Request-Response)
+
+The following bindings are selected:
+SOAP over http.
+
+The following WSDL files will be generated:
+/SoapNewElement/SoapNewElementService.wsdl
+
+
+Generating XML Schema files from Message Definition files
+Generating schema for no XML Wire format
+Generating schema using the strict option
+All complex types and groups with a Content validation of "Open" or "Open defined" will be generated as if they had Content validation "Closed"
+All complex types and groups with a Composition of "Ordered set" or "Unordered set" will be generated with a Composition of "Sequence"
+All complex types and groups with a Composition of "Message" will be generated with a Composition of "Choice"
+
+
+Processing File : "/SoapNewElement/SoapNewElement/Soap_NewElement.mxsd"
+
+Saving File : "/SoapNewElement/Soap_NewElement.xsd" 
+
+Generating XML Schema file \SoapNewElement\SoapNewElement\Soap_NewElement.mxsd from Message Definition file \SoapNewElement\Soap_NewElement.xsd
+Creating new WSDL Service file '\SoapNewElement\SoapNewElementService.wsdl'
+Setting wsdl definition name for 'SoapNewElementService.wsdl': SoapNewElement
+Setting wsdl definition targetNamespace for 'SoapNewElementService.wsdl': http://tempuri.org/SoapNewElement
+Adding namespace: xmlns for 'SoapNewElementService.wsdl':soap=http://schemas.xmlsoap.org/wsdl/soap/
+Adding namespace: xmlns for 'SoapNewElementService.wsdl':xsd=http://www.w3.org/2001/XMLSchema
+Adding namespace: xmlns for 'SoapNewElementService.wsdl':wsdl=http://schemas.xmlsoap.org/wsdl/
+Creating new WSDL Interface file '\SoapNewElement\SoapNewElementService.wsdl'
+Creating portType for WSDL Interface: SoapNewElementPortType
+Creating portType operation 'EmployeeDetails'
+Creating message 'EmployeeDetails_in'
+Creating message 'EmployeeDetails_out'
+Creating message 'EmployeeDetails_fault1'
+Creating SOAP over HTTP binding 'SoapNewElementSOAP_HTTP_Binding'
+Creating binding operation 'EmployeeDetails' for binding 'SoapNewElementSOAP_HTTP_Binding'
+Creating SOAP over HTTP service 'SoapNewElementSOAP_Service'
+Creating port 'SoapNewElementSOAP_Port' for service 'SoapNewElementSOAP_Service'
+
+Elapsed time processing this WSDL definition: 0.099 seconds
+Number of warnings for this WSDL definition: 0
+
+
+Number of files processed: 2
+
+

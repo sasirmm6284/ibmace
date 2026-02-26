@@ -1,0 +1,51 @@
+
+
+CREATE COMPUTE MODULE task_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+      
+	DECLARE countryRef REFERENCE TO InputRoot.XMLNSC.Data.Country[1];
+ 
+    WHILE LASTMOVE(countryRef) DO
+IF countryRef.region = 'Asia' THEN
+    SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'ASIA.Q';
+    SET OutputRoot.JSON.Data.Destination = countryRef;
+    PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+    SET OutputRoot.JSON.Data = NULL;
+ELSEIF countryRef.region = 'Europe' THEN
+    SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'EUROPE.Q';
+    SET OutputRoot.JSON.Data.Destination = countryRef;
+    PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+    SET OutputRoot.JSON.Data = NULL;
+ELSEIF countryRef.region = 'America' THEN
+    SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'AMERICA.Q';
+    SET OutputRoot.JSON.Data.Destination = countryRef;
+    PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+    SET OutputRoot.JSON.Data = NULL;
+ELSE
+    SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = 'OTHER_Q';
+END IF;
+
+ 
+            -- Move to next country
+            MOVE countryRef NEXTSIBLING;
+        END WHILE;
+		RETURN FALSE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

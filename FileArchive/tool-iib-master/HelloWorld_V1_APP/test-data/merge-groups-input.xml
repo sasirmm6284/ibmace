@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<electronics>
+	<product>
+		<brand>LG</brand>
+		<type>mobile</type>
+		<cost>123</cost>
+	</product>
+	<product>
+		<brand>SAMSUNG</brand>
+		<type>mobile</type>
+		<cost>102</cost>
+	</product>
+	<product>
+		<brand>LG</brand>
+		<type>refrigerator</type>
+		<cost>223</cost>
+	</product>
+	<product>
+		<brand>SAMSUNG</brand>
+		<type>refrigerator</type>
+		<cost>143</cost>
+	</product>
+</electronics>

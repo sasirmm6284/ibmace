@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/SoapNewElement" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SoapNewElement" targetNamespace="http://tempuri.org/SoapNewElement">
+  <wsdl:types>
+    <xsd:schema xmlns:mrm="http://tempuri.org/SoapNewElement" targetNamespace="http://tempuri.org/SoapNewElement">
+      <xsd:include schemaLocation="Soap_NewElement.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EmployeeDetails_in">
+    <wsdl:part element="tns:Request" name="Request"/>
+  </wsdl:message>
+  <wsdl:message name="EmployeeDetails_out">
+    <wsdl:part element="tns:Response" name="Response"/>
+  </wsdl:message>
+  <wsdl:message name="EmployeeDetails_fault1">
+    <wsdl:part element="tns:Fault" name="Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="SoapNewElementPortType">
+    <wsdl:operation name="EmployeeDetails">
+      <wsdl:input message="tns:EmployeeDetails_in" name="EmployeeDetails_Input"/>
+      <wsdl:output message="tns:EmployeeDetails_out" name="EmployeeDetails_Output"/>
+      <wsdl:fault message="tns:EmployeeDetails_fault1" name="EmployeeDetails_Fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoapNewElementSOAP_HTTP_Binding" type="tns:SoapNewElementPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EmployeeDetails">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="EmployeeDetails_Input">
+        <soap:body parts="Request" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EmployeeDetails_Output">
+        <soap:body parts="Response" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EmployeeDetails_Fault">
+        <soap:fault name="EmployeeDetails_Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoapNewElementSOAP_Service">
+    <wsdl:port binding="tns:SoapNewElementSOAP_HTTP_Binding" name="SoapNewElementSOAP_Port">
+      <soap:address location="http://localhost:7800/Soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

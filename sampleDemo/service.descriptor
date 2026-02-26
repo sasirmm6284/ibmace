@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service:services xmlns:service="http://com.ibm.etools.mft.service">
+  <service:service implementation="gen/sampleDemo.msgflow" name="sampleDemo" portType="sampleDemo" wsdlFileName="sampleDemo.wsdl">
+    <service:operations>
+      <service:operation name="operation1" type="request-response">
+        <service:flows/>
+      </service:operation>
+    </service:operations>
+    <service:errors>
+      <service:flows>
+        <service:flow location="gen/sampleDemoInputFailureHandler.subflow" type="Failure"/>
+        <service:flow location="gen/sampleDemoInputCatchHandler.subflow" type="Catch"/>
+        <service:flow location="gen/sampleDemoInputHTTPTimeoutHandler.subflow" type="Timeout"/>
+      </service:flows>
+    </service:errors>
+  </service:service>
+</service:services>
