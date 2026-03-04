@@ -1,13 +1,12 @@
 
 
-CREATE COMPUTE MODULE DataObject_Compute
+CREATE COMPUTE MODULE Testing_Jenkins01_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		 CALL CopyMessageHeaders();
 		-- CALL CopyEntireMessage();
 		
-SET OutputRoot.DataObject.customer.id = 101;
-SET OutputRoot.DataObject.customer.name = 'Alice';
+		SET OutputRoot.JSON.Data.Status='Deploying from Jenkins';
 		RETURN TRUE;
 	END;
 
@@ -25,5 +24,3 @@ SET OutputRoot.DataObject.customer.name = 'Alice';
 		SET OutputRoot = InputRoot;
 	END;
 END MODULE;
-
-
